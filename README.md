@@ -14,6 +14,9 @@ gradle test
 ```
 Runs the tests and creates the report in ```build/reports/tests/test/index.html```
 
+
+## Project Object & Task Object
+
 ### Gradle Task
 Project is the root class under which task can be considered as a method.
 ```shell
@@ -80,3 +83,25 @@ BUILD SUCCESSFUL in 566ms
 3 actionable tasks: 3 executed
 
 ```
+
+
+##### External Properties
+```shell
+project.ext.xyz="abc"
+ext{
+  test="external properties"
+}
+```
+
+Retrieve the properties 
+```shell
+println project.ext.xyz
+println project.ext.test
+```
+
+##  Configurations
+
+compileOnly : Dependancy will be available only during the compile time of your source code.
+    Example : Lombok or Dozer
+
+runtimeOnly : example Logging. No need at compiletime but required at runtime.
