@@ -7,6 +7,40 @@ plugins {
     id 'application'
 }
 
+task firstTask{
+    def abc=123
+    println abc
+    println "Gradle First Task!!"
+}
+task taskX {
+    println "task X"
+}
+task taskY {
+    shouldRunAfter "taskX"
+}
+task deployToStage{
+    doLast(){
+        println "Deployed to Stage"
+    }
+}
+
+task deployToProd{
+    doLast(){
+        println "Deployed to Prod"
+    }
+}
+
+task cleanUpFiles{
+    doLast(){
+        println "Clean Up Files"
+    }
+}
+
+deployToProd.dependsOn deployToStage
+deployToProd.finalizedBy cleanUpFiles
+defaultTasks "deployToStage"
+
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
