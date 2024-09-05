@@ -12,8 +12,7 @@ gradle clean build --refresh-dependencies -x test                               
 ```shell
 gradle test
 ```
-Runs the tests and creates the report in ```build/reports/tests/test/index.html```
-
+Runs the tests and creates the report in `build/reports/tests/test/index.html`
 
 ## Project Object & Task Object
 

@@ -3,12 +3,30 @@ plugins {
     id 'application'
 }
 
+//Project Properties
 project.description("Gradle Learning Project")
 project.version=1.0
 project.ext.xyz="abc"
 ext{
+    xyz="xyz" //over-riding
     test="external properties"
 }
+
+//Application Plugin Configuration:
+application {
+    mainClassName = 'com.gradle.learn.App'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:29.0-jre'
+    testImplementation 'junit:junit:4.13'
+}
+
 task firstTask{
     def abc=123
     println abc
@@ -19,14 +37,18 @@ task firstTask{
     println project.version
     println project.ext.xyz
     println project.ext.test
+    println "**********************************************"
 }
 
 task taskX {
     println "task X"
 }
 
+//Order of Execution: If you need to ensure the order of task execution more strictly,
+// look into using dependsOn for ordering rather than shouldRunAfter.
 task taskY {
     shouldRunAfter "taskX"
+    println "task Y"
 }
 
 task deployToStage{
@@ -47,20 +69,8 @@ task cleanUpFiles{
     }
 }
 
+//Task Dependencies and Finalizers
 deployToProd.dependsOn deployToStage
 deployToProd.finalizedBy cleanUpFiles
+//Default Tasks
 defaultTasks "deployToStage"
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
-dependencies {
-    implementation 'com.google.guava:guava:29.0-jre'
-    testImplementation 'junit:junit:4.13'
-}
-
-application {
-    mainClassName = 'com.gradle.learn.App'
-}
