@@ -20,12 +20,15 @@ task firstTask{
     println project.ext.xyz
     println project.ext.test
 }
+
 task taskX {
     println "task X"
 }
+
 task taskY {
     shouldRunAfter "taskX"
 }
+
 task deployToStage{
     doLast(){
         println "Deployed to Stage"
@@ -47,7 +50,6 @@ task cleanUpFiles{
 deployToProd.dependsOn deployToStage
 deployToProd.finalizedBy cleanUpFiles
 defaultTasks "deployToStage"
-
 
 repositories {
     mavenCentral()
