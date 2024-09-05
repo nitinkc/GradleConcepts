@@ -4,8 +4,9 @@ plugins {
 }
 
 //Project Properties
-project.description("Gradle Learning Project")
-project.version=1.0
+description("Gradle Learning Project")
+version=1.0
+group='com.gradle.learn'
 project.ext.xyz="abc"
 ext{
     xyz="xyz" //over-riding
@@ -52,7 +53,7 @@ task taskY {
 }
 
 task deployToStage{
-    doLast(){
+    doFirst (){
         println "Deployed to Stage"
     }
 }
@@ -69,8 +70,18 @@ task cleanUpFiles{
     }
 }
 
+//create custom tasks in Gradle by defining them in the build script using
+// task or by creating custom task classes
+class HelloTask extends DefaultTask {
+    @TaskAction
+    def greet() {
+        println 'Hello, Gradle!'
+    }
+}
+
 //Task Dependencies and Finalizers
 deployToProd.dependsOn deployToStage
 deployToProd.finalizedBy cleanUpFiles
 //Default Tasks
 defaultTasks "deployToStage"
+task hello(type: HelloTask)

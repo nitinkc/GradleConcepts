@@ -7,4 +7,7 @@
  * in the user manual at https://docs.gradle.org/6.6.1/userguide/multi_project_builds.html
  */
 
+// Multi-Project Build (Optional)
+// If using a multi-project build, include in settings.gradle
 rootProject.name = 'gradle-concepts'
+include 'subproject1', 'subproject2'

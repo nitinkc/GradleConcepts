@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+//Project Properties
+description("Subproject under main Project")
+version=1.0
+group='com.gradle.learn'
+
+//Application Plugin Configuration:
+application {
+    mainClassName = 'com.gradle.learn.App'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+
+}
+
+class HelloTask extends DefaultTask {
+    @TaskAction
+    def greet() {
+        println 'Hello, Gradle!'
+    }
+}
+
+task hello(type: HelloTask)
