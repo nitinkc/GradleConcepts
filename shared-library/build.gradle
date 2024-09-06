@@ -1,0 +1,14 @@
+// shared-library/build.gradle
+plugins {
+    id 'java'
+}
+
+dependencies {
+    // Define any dependencies required by the shared library
+}
+
+tasks.register('infoTask') {
+    doLast {
+        println 'Shared Library: Utility Class Ready!'
+    }
+}

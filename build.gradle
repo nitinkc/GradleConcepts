@@ -4,7 +4,7 @@ plugins {
 }
 
 //Project Properties
-description("Gradle Learning Project")
+project.description("Gradle Learning Project")
 version=1.0
 group='com.gradle.learn'
 project.ext.xyz="abc"
@@ -18,14 +18,26 @@ application {
     mainClassName = 'com.gradle.learn.App'
 }
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
 dependencies {
     implementation 'com.google.guava:guava:29.0-jre'
-    testImplementation 'junit:junit:4.13'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    // Apply common configurations to all subprojects
+    group = 'com.example'
+    version = '1.0.0'
+
+    // Common dependencies for all subprojects
+    dependencies {
+        // https://mvnrepository.com/artifact/junit/junit
+        testImplementation 'junit:junit:4.13.2'
+
+    }
 }
 
 task firstTask{
@@ -85,3 +97,11 @@ deployToProd.finalizedBy cleanUpFiles
 //Default Tasks
 defaultTasks "deployToStage"
 task hello(type: HelloTask)
+
+// Optional: Define common tasks
+task cleanAll {
+    dependsOn subprojects.collect { it.tasks.findByName('clean') }
+    doLast {
+        println 'Cleaned all subprojects'
+    }
+}
