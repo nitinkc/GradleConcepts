@@ -5,7 +5,7 @@ package com.gradle.learn;
 
 public class App {
     public String getGreeting() {
-        return "Hello world!";
+        return "Shared Library!!";
     }
 
     public static void main(String[] args) {

@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(':shared-library') // Dependency on shared library
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+tasks.register('greetTask') {
+    doLast {
+        println 'Greetings from Subproject 2!'
+    }
+}

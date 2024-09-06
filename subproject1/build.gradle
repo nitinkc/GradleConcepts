@@ -1,6 +1,10 @@
 plugins {
     id 'java'
-    id 'application'
+}
+
+//Application Plugin Configuration:
+application {
+    //mainClassName = 'com.gradle.learn.App'
 }
 
 //Project Properties
@@ -8,25 +12,14 @@ description("Subproject under main Project")
 version=1.0
 group='com.gradle.learn'
 
-//Application Plugin Configuration:
-application {
-    mainClassName = 'com.gradle.learn.App'
-}
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
 
 dependencies {
-
+    implementation project(':shared-library') // Dependency on shared library
+    implementation 'com.google.guava:guava:30.1-jre'
 }
 
-class HelloTask extends DefaultTask {
-    @TaskAction
-    def greet() {
-        println 'Hello, Gradle!'
+tasks.register('helloTask') {
+    doLast {
+        println 'Hello from Subproject 1!'
     }
 }
-
-task hello(type: HelloTask)

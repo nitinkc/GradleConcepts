@@ -17,15 +17,19 @@ ext{
 application {
     mainClassName = 'com.gradle.learn.App'
 }
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
 
 dependencies {
-    implementation 'com.google.guava:guava:29.0-jre'
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation 'junit:junit:4.13.2'
 }
 
 allprojects {
     repositories {
         mavenCentral()
-        mavenLocal()
     }
 
     // Apply common configurations to all subprojects
@@ -34,9 +38,7 @@ allprojects {
 
     // Common dependencies for all subprojects
     dependencies {
-        // https://mvnrepository.com/artifact/junit/junit
-        testImplementation 'junit:junit:4.13.2'
-
+        //Fix this. No dependency works here
     }
 }
 
